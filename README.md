@@ -1,97 +1,125 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+text
+# StoreApp-React-Native
 
-# Getting Started
+A React Native (CLI) **JavaScript** mobile app template for store-style projects. It focuses on clean UI structure, reusable components, and a demo authentication flow with a public API. The app includes Welcome/Login and Sign Up screens, light/dark theme toggling via a Theme Context, and alert-driven UX when a user tries to log in with an account that doesn’t exist.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+GitHub: https://github.com/Abssm/StoreApp-React-Native  
+Author: https://github.com/Abssm (@Abssm)  
+License: MIT
 
-## Step 1: Start Metro
+---
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Features
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- React Native CLI project (React Native `0.84.0`)
+- Welcome/Login screen
+- Sign Up screen with basic validation and user creation
+- Demo login check (user existence) using a public users API
+- Native `Alert` when the account is not found, then redirect to Sign Up
+- Navigate back to Welcome after Sign Up (optionally with prefilled username via route params)
+- Light/Dark mode toggle (ThemeContext)
+- Reusable UI components (inputs, buttons, back button patterns)
+- Bottom tabs + stack navigation
 
-```sh
-# Using npm
+---
+
+## Tech Stack
+
+- React Native + React Hooks
+- React Navigation (`@react-navigation/native`, `native-stack`, `bottom-tabs`)
+- Axios for HTTP requests
+- `react-native-vector-icons`
+- `react-native-safe-area-context`, `react-native-screens`, `react-native-gesture-handler`
+
+> For many navigation setups, `react-native-gesture-handler` needs to be imported at the top of your entry file (e.g., `index.js`) to avoid production crashes. See React Navigation / RNGH docs. [web:74][web:70]
+
+---
+
+## Demo Auth Flow (How it works)
+
+> This is a **demo** flow (not secure authentication). The API used here does not provide real password verification, tokens, or sessions.
+
+1. User enters username/password on **Welcome**
+2. App fetches users from: `https://api.escuelajs.co/api/v1/users`
+3. If username is not found:
+   - Show an alert (“Account not found”)
+   - Redirect to **Sign Up**
+4. After successful Sign Up (POST new user):
+   - Navigate back to **Welcome**
+   - Optionally prefill username via navigation params
+5. User can then log in and continue to the main app (tabs)
+
+---
+
+## Requirements
+
+- Node.js `>= 22.11.0` (as set in `package.json`)
+- React Native CLI environment setup
+- Android Studio (Android) and/or Xcode (iOS)
+- CocoaPods for iOS
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/Abssm/StoreApp-React-Native.git
+cd StoreApp-React-Native
+npm install
+# or
+yarn
+iOS Pods
+bash
+cd ios
+pod install
+cd ..
+Run the App
+Start Metro
+bash
 npm start
-
-# OR using Yarn
+# or
 yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+Android
+bash
 npm run android
-
-# OR using Yarn
+# or
 yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+iOS
+bash
 npm run ios
-
-# OR using Yarn
+# or
 yarn ios
-```
+Available Scripts
+npm start – start Metro bundler
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+npm run android – run Android app
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+npm run ios – run iOS app
 
-## Step 3: Modify your app
+npm run lint – run ESLint
 
-Now that you have successfully run the app, let's make changes!
+npm test – run Jest tests
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Dependencies (highlights)
+Navigation: @react-navigation/native, @react-navigation/native-stack, @react-navigation/bottom-tabs
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+Networking: axios
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+UI/system: react-native-safe-area-context, react-native-screens, react-native-gesture-handler
 
-## Congratulations! :tada:
+Icons: react-native-vector-icons
 
-You've successfully run and modified your React Native App. :partying_face:
+License
+MIT License.
 
-### Now what?
+The MIT License is permissive and allows you to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, as long as the copyright notice and license text are included with copies or substantial portions of the software. [web:58][web:67]
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Contributing
+Issues and pull requests are welcome:
 
-# Troubleshooting
+Open an issue with steps to reproduce (and screenshots/logs if possible)
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+Submit a PR with a clear description of what you changed and why
 
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Notes / Disclaimer
+This repository is intended as a template/learning project. For production authentication, replace the demo flow with a real backend login (JWT/OAuth), secure storage (Keychain/Keystore), and proper session handling.
